@@ -1,0 +1,8 @@
+name = "telegram-filter-bot"
+main = "src/index.js"
+compatibility_date = "2024-05-02"
+
+# Note: Secrets like BOT_TOKEN, SUPABASE_URL, and SUPABASE_SERVICE_ROLE_KEY should not
+# be stored here. Instead, upload them using:
+# wrangler secret put KEY
+# Or manage them in your Cloudflare dashboard under Worker Settings -> Variables.

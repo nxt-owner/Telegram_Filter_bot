@@ -1,0 +1,16 @@
+{
+  "name": "telegram-filter-bot",
+  "version": "1.0.0",
+  "description": "Telegram filter bot on Cloudflare Workers using Supabase",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.43.4"
+  },
+  "devDependencies": {
+    "wrangler": "^3.57.1"
+  }
+}
