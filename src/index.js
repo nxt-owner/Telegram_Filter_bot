@@ -114,7 +114,7 @@ async function handleUpdate(update, env) {
   if (rawCommand === "/start") {
     let startText;
     if (chatId > 0) {
-      startText = `👋 *Welcome to the Telegram Filter Bot!*\n\nI can help you set up automatic replies to keywords in your group chats or here in private messages.\n\n⚙️ *How to use me:*\n1. Add me to your group chat.\n2. Disable Privacy Mode in @BotFather or promote me to Admin so I can see group messages.\n3. Send \`/add KEYWORD RESPONSE\` in the group/chat to register an auto-reply.\n4. Send \`/list\` to see registered keywords.\n5. Send \`/remove KEYWORD\` to delete a filter.\n\n💡 *Need help?* Send \`/help\` to view detailed usage instructions, formatting options, and developer links.\n\n*(Note: Add/Remove/List commands are restricted to group admins)*`;
+      startText = `👋 *Welcome to the Telegram Filter Bot!*\n\nI can help you set up automatic replies to keywords in your group chats or here in private messages.\n\n⚙️ *How to use me:*\n1. Add me to your group chat.\n2. Send \`/add KEYWORD RESPONSE\` in the group/chat to register an auto-reply.\n3. Send \`/list\` to see registered keywords.\n4. Send \`/remove KEYWORD\` to delete a filter.\n\n💡 *Need help?* Send \`/help\` to view detailed usage instructions, formatting options, and developer links.\n\n*(Note: Add/Remove/List commands are restricted to group admins)*`;
     } else {
       startText = `👋 *Hello! I am active in this group.*\n\nI will auto-reply to registered keyword filters. Group admins can use \`/add\`, \`/list\`, and \`/remove\` directly in this chat.\n\n💡 Send \`/help\` to learn more about formatting and developer details.`;
     }
