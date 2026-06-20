@@ -5,6 +5,7 @@ A lightweight, serverless Telegram bot deployed on Cloudflare Workers. It uses S
 ## 🚀 Features
 
 - **/start** - Display instructions and setup information (tailored for DM and group chats).
+- **/help** - Display detailed usage guidelines, response formatting options, and developer links.
 - **/add `<keyword>` `<response>`** - Add or update a keyword filter for the current chat/group (Admin only). Supports multiple words for the response.
 - **/remove `<keyword>`** - Delete a keyword filter from the current chat/group (Admin only).
 - **/list** - List all active keyword filters for the current chat/group (Admin only).
@@ -129,6 +130,10 @@ Verify you receive a success response:
 4. **Remove a filter** (Admin only):
    Send `/remove KEYWORD` to the bot.
    *The bot will respond:* `🗑️ Removed: KEYWORD`
+
+5. **Get help & dev details** (Anyone):
+   Send `/help` to the bot.
+   *The bot will return detailed help, formatting instructions, and links to the developer's website (https://techlasiya.com).*
 
 ---
 
