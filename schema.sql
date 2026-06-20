@@ -3,10 +3,12 @@
 
 create table if not exists filters (
   id uuid primary key default gen_random_uuid(),
-  keyword text unique not null,
+  chat_id bigint not null,
+  keyword text not null,
   response text not null,
   created_by bigint,
-  created_at timestamp with time zone default timezone('utc'::text, now()) not null
+  created_at timestamp with time zone default timezone('utc'::text, now()) not null,
+  constraint filters_chat_id_keyword_key unique (chat_id, keyword)
 );
 
 -- Enable Row Level Security (RLS) if you want to restrict public access.

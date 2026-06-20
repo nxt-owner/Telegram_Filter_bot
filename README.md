@@ -4,11 +4,13 @@ A lightweight, serverless Telegram bot deployed on Cloudflare Workers. It uses S
 
 ## 🚀 Features
 
-- **/add `<keyword>` `<response>`** - Add or update a keyword filter (Admin only). Supports multiple words for the response.
-- **/remove `<keyword>`** - Delete a keyword filter (Admin only).
-- **/list** - List all active keyword filters (Admin only).
-- **Auto-Reply** - Automatically triggers and sends the saved response when anyone (admin or user) sends a message containing a registered keyword in a private chat or group.
+- **/start** - Display instructions and setup information (tailored for DM and group chats).
+- **/add `<keyword>` `<response>`** - Add or update a keyword filter for the current chat/group (Admin only). Supports multiple words for the response.
+- **/remove `<keyword>`** - Delete a keyword filter from the current chat/group (Admin only).
+- **/list** - List all active keyword filters for the current chat/group (Admin only).
+- **Auto-Reply** - Automatically triggers and sends the saved response when anyone sends a message containing a registered keyword in the current chat/group.
 - **Safety checks** - Ignores messages from other bots to prevent message loops.
+- **Group Isolation** - Each group chat and private DM has its own independent set of filters. Group administrators can manage filters for their respective group.
 
 ---
 
@@ -22,10 +24,12 @@ A lightweight, serverless Telegram bot deployed on Cloudflare Workers. It uses S
 ```sql
 create table if not exists filters (
   id uuid primary key default gen_random_uuid(),
-  keyword text unique not null,
+  chat_id bigint not null,
+  keyword text not null,
   response text not null,
   created_by bigint,
-  created_at timestamp with time zone default timezone('utc'::text, now()) not null
+  created_at timestamp with time zone default timezone('utc'::text, now()) not null,
+  constraint filters_chat_id_keyword_key unique (chat_id, keyword)
 );
 ```
 
@@ -157,3 +161,22 @@ This will send a message with three buttons:
 - Row 1: `Visit Website` and `Read FAQs` side-by-side.
 - Row 2: `Support Chat` underneath them.
 
+
+---
+
+## 👥 8. Group Chat Setup & Bot Privacy
+
+By default, Telegram bots have **Privacy Mode** enabled. This prevents them from seeing regular messages in group chats (they only receive commands starting with `/`). 
+
+To make the auto-reply keyword filters work in group chats, you must do one of the following:
+
+### Option A: Disable Bot Privacy (Recommended)
+1. Message [@BotFather](https://t.me/BotFather) and send `/mybots`.
+2. Select your bot.
+3. Go to **Bot Settings** -> **Group Privacy**.
+4. Click **Turn off** (it should show `Privacy mode is disabled`).
+5. **Important:** If your bot is already added to a group, **remove the bot and add it back** for this change to take effect.
+
+### Option B: Promote to Administrator
+1. Add the bot to your group chat.
+2. Promote the bot to an **Administrator** with at least "Post Messages" permission. Admins automatically bypass Privacy Mode.
