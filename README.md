@@ -16,7 +16,7 @@ A lightweight, serverless Telegram bot deployed on Cloudflare Workers. It uses S
 
 ## 🗄️ 1. Database Setup (Supabase)
 
-1. Open your Supabase Dashboard at [omdghelbbovysicwrwji.supabase.co](https://omdghelbbovysicwrwji.supabase.co).
+1. Open your Supabase Dashboard at [https://supabase.com/dashboard](https://supabase.com/dashboard).
 2. Go to the **SQL Editor** tab on the left sidebar.
 3. Click **New Query**.
 4. Copy and paste the contents of `schema.sql` (also shown below) and click **Run**:
@@ -39,7 +39,7 @@ create table if not exists filters (
 
 You need to obtain four parameters to configure the bot:
 
-1. **`SUPABASE_URL`**: `https://omdghelbbovysicwrwji.supabase.co`
+1. **`SUPABASE_URL`**: `https://example.supabase.co`
 2. **`SUPABASE_SERVICE_ROLE_KEY`**: Found in Supabase under **Project Settings** -> **API** -> `service_role` (secret) key.
    > ⚠️ **DO NOT** use the `anon` key. The worker needs the `service_role` key to bypass RLS policies and make database updates.
 3. **`BOT_TOKEN`**: The token provided by [@BotFather](https://t.me/BotFather) when you create your bot.
@@ -55,7 +55,7 @@ To run the project locally:
 2. Run `npm install` to install dependencies.
 3. Open the `.dev.vars` file and update the variables:
    ```env
-   SUPABASE_URL="https://omdghelbbovysicwrwji.supabase.co"
+   SUPABASE_URL="https://example.supabase.co"
    SUPABASE_SERVICE_ROLE_KEY="your_supabase_service_role_key"
    BOT_TOKEN="your_telegram_bot_token"
    ADMIN_ID="your_telegram_user_id"
